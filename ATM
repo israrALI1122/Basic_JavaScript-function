@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="deposit status">
+        <h5>Deposit</h5>
+        <h2>$ <span id="current-deposit">00</span></h2>
+    </div>
+
+
+    <div class="withdraw status">
+        <h5>Withdraw</h5>
+        <h2>$ <span id="current-withdraw">00</span></h2>
+    </div>
+
+
+
+    <div class="balance status">
+        <h5>Balance</h5>
+        <h2>$ <span id="current-balance">1000</span></h2>
+    </div>
+
+
+    <div class="submit-area">
+        <h4>Deposit Amount</h4>
+        <input id="deposit-amount" type="text" class="form-control" placeholder="Enter deposit amount"><br>
+        <button id="deposit-btn" class="btn btn-success">Deposit</button>
+    </div>
+
+
+
+    <div class="submit-area">
+        <h4>Withdraw Amount</h4>
+        <input id="withdraw-amount" type="text" class="form-control" placeholder="Enter withdraw amount"><br>
+        <button id="withdraw-btn" class="btn btn-success">Withdraw</button>
+    </div>
+   
+
+
+    <script>
+        
+        const deposit_btn = document.getElementById('deposit-btn');
+        deposit_btn.addEventListener('click', function () {
+
+            const depositStringToInt = getInputNumb("deposit-amount");
+
+            updateSpanTest("current-deposit", depositStringToInt);
+            updateSpanTest("current-balance", depositStringToInt);
+
+         
+            document.getElementById('deposit-amount').value = "";
+
+        })
+
+        
+        const withdraw_btn = document.getElementById('withdraw-btn');
+        withdraw_btn.addEventListener('click', function () {
+            const withdrawNumb = getInputNumb("withdraw-amount");
+
+            updateSpanTest("current-withdraw", withdrawNumb);
+            updateSpanTest("current-balance", -1 * withdrawNumb);
+         
+            document.getElementById('withdraw-amount').value = "";
+        })
+
+        
+        function getInputNumb(idName) {
+            const amount = document.getElementById(idName).value;
+            const amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+
+        function updateSpanTest(idName, addedNumber) {
+          
+            const current = document.getElementById(idName).innerText;
+            const currentStringToInt = parseFloat(current);
+
+            const total = currentStringToInt + addedNumber;
+
+           
+            document.getElementById(idName).innerText = total;
+        }
+
+    </script>
+</body>
+
+</html>
+body {
+	margin: 0;
+	padding-top: 10px;
+  background-color: #bdcd67;
+}
+.deposit {
+    background-color: rgb(163, 80, 177);
+    
+}
+
+
+.withdraw {
+    background-color: lightsalmon;
+}
+
+.balance {
+    background-color: tomato;
+}
+.submit-area {
+	padding: 10px;
+	margin-top: 50px;
+	border-radius: 10px;
+	box-shadow: 5px 5px gray;
+  color: rgba(196, 77, 77, 0.703);
+  background-color: royalblue;
+}
+
+#account-area {
+	margin-top: 5%;
+}
+
+
+.status {
+	margin: 0 20px;
+	color: white;
+	padding: 20px;
+	border-radius: 10px;
+}
+h4{
+    color: black;
+}
+
