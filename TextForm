@@ -1,0 +1,240 @@
+
+
+import React, { useState } from 'react'
+
+const Area = (props) => {
+  const [text, setText] = useState("enter the text here ")
+
+  const handleOnChange = (e) => {
+    setText(e.target.value)
+  }
+  const click = () => {
+    const data = text.toUpperCase()
+    setText(data)
+    props.showalert("converted to upper case " , "success")
+
+  }
+  const click1 = () => {
+    const data1 = text.toLowerCase();
+    setText(data1)
+    props.showalert("converted to lower case " , "success")
+  }
+  const click2 = () => {
+    const click2 = " ";
+    setText(click2)
+    props.showalert(" text cleared" , "success")
+  }
+  const click3 = () => {
+    const newtex = text.split(/[ ]+/);
+    setText(newtex.join(" "))
+    props.showalert("spacess removed" , "success")
+  }
+
+  return (
+    <div style={{color : props.color === `dark` ? `white` : `#042743`}}>
+
+      <h1>{props.heading}</h1>
+
+      <div className="container" >
+        <textarea name="text" id="text" onChange={handleOnChange} style={{background : props.color === `dark` ? `grey` : `white`, color : props.color === `dark` ? `white` : `#042743`}}  value={text} cols="30" rows="10"></textarea>
+        <button className="btn btn-primary mx-2" onClick={click}>convert to uppercase</button>
+        <button className="btn btn-primary " onClick={click1}>convert to lowercase</button>
+        <button className='btn btn-primary mx-2' onClick={click2}>clear</button>
+        <button className='btn btn-primary' onClick={click3}>Remove spaces</button>
+
+      </div>
+      <div className="container">
+
+        <h1>my summary</h1>
+
+        <p>{text.split(" ").length} words and {text.length} charachters</p>
+        <p>{0.008 * text.split(" ").length} </p>
+        <h2>preview</h2>
+        <p>{text}</p>
+        
+      </div>
+
+    </div>
+  )
+}
+
+export default Area
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import React from 'react'
+
+const Navebar = (props) => {
+
+    return (
+        <nav className={`navbar navbar-expand-lg navbar-${props.color} bg-${props.color}`}>
+            <a className="navbar-brand" href="/">{props.title}</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="/">Home </a>
+                    </li>
+                </ul>
+            </div>
+            <div className={`form-check form-switch text-${props.color === `light` ? `dark` : `light`}`}>
+                <input className="form-check-input" onClick={props.togglemode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable dark mode</label>
+            </div>
+            
+        </nav>
+
+    )
+}
+
+export default Navebar
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import React, {useState} from 'react'
+import './About.css'
+
+const Aabout = () => {
+    const[btntext,setBtnText]= useState(" enble dark mode")
+    const [mystyle, setMystyle]= useState({
+        color: "black",
+        backgroundColor:"white"
+    })
+
+    const toggle=()=>{
+        if(mystyle.color === "black"){
+            setMystyle({
+                color: "white",
+                backgroundColor:"black",
+                border: "1px solid white",
+            })
+            setBtnText("Enable light mode")
+        }else{
+            setMystyle({
+                color: "black",
+                backgroundColor:"white"
+            })
+            setBtnText("Enable Dark mode")
+
+        }
+    }
+    
+  return (
+    <div className='container' style={mystyle}>
+        <h1>ABOUT US</h1>
+    <div class="accordion" id="accordionExample" style={mystyle}>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Accordion Item #1
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body" style={mystyle}>
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Accordion Item #2
+            </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body" style={mystyle}>
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Accordion Item #3
+            </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body" style={mystyle}>
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+            </div>
+        </div>
+        </div>
+        <button onClick={toggle} type='button' className="btn btn-primary">{btntext}</button>
+  
+    </div>
+  )
+}
+
+export default Aabout
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import React from 'react'
+
+const Alert = (props) => {
+
+    const capital =(word)=>{
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase()+ lower.slice(1);
+
+    }
+    return (
+        props.alert &&
+        <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+            <strong>{capital(props.alert.type)}</strong>:  {props.alert.msg}
+            
+        </div>
+    )
+}
+
+export default Alert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import Aabout from "./components/utility/Aabout";
+
+import { useState } from "react";
+import Alert from "./components/utility/Alert";
+import Area from "./components/utility/Area";
+import Navebar from "./components/utility/Navebar";
+
+// import './App.css';
+function App() {
+  const [mode, setMode] = useState("light");
+  const [alert,setAlert]= useState(null);
+
+  const showalert=(message, type)=>{
+    setAlert({
+      msg: message,
+      type: type,
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000);
+  }
+
+  const togglemode = () => {
+    if (mode === "light") {
+      setMode("dark")
+      document.body.style.backgroundColor = "#042743"
+      showalert("dark mode has been enabled", "success")
+    } else {
+      setMode("light")
+      document.body.style.backgroundColor = "white"
+      showalert("light mode has been enabled", "success")
+    }
+  }
+  return (
+    < >
+
+      <Navebar title="Textarea" color={mode} togglemode={togglemode} />
+      <Alert alert={alert}/>
+      
+        <Area showalert={showalert} heading="Enter the text to analyz " color={mode}/>
+      <Aabout/>
+
+
+    </>
+  );
+}
+
+
+export default App;
